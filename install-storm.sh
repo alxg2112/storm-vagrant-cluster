@@ -8,6 +8,19 @@ apt-get install -y unzip supervisor openjdk-7-jdk
 groupadd storm
 useradd --gid storm --home-dir /home/storm --create-home --shell /bin/bash storm
 
+# Disable firewall
+sudo iptables -P INPUT ACCEPT
+sudo iptables -P OUTPUT ACCEPT
+sudo iptables -P FORWARD ACCEPT
+sudo iptables -F
+
+# Update environment variables
+cd /etc
+truncate -s 0 environment
+printf "JAVA_HOME=\"/usr/lib/jvm/java-7-openjdk-i386\"\n" >> environment
+printf "PATH=\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:$JAVA_HOME/bin\"" >> environment
+source /etc/environment
+
 # Unzip Storm
 unzip -o /vagrant/$1.zip -d /usr/share/
 chown -R storm:storm /usr/share/$1

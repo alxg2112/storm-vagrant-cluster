@@ -1,15 +1,23 @@
 
+# Configure zookeeper
 storm.zookeeper.servers:
     - "zookeeper"
+storm.zookeeper.session.timeout: 150000
+storm.zookeeper.connection.timeout: 120000
 
+# Configure nimbus
 nimbus.seeds: ["nimbus"]
 
-# netty transport
-storm.messaging.transport: "backtype.storm.messaging.netty.Context"
-storm.messaging.netty.buffer_size: 16384
-storm.messaging.netty.max_retries: 10
+# Netty transport
+storm.messaging.transport: "org.apache.storm.messaging.netty.Context"
+storm.messaging.netty.buffer_size: 5242880
+storm.messaging.netty.max_retries: 100
 storm.messaging.netty.min_wait_ms: 1000
 storm.messaging.netty.max_wait_ms: 5000
 
+# Configure workers
+worker.childopts: ""
+
+# DRPC servers config
 drpc.servers:
   - "nimbus"
