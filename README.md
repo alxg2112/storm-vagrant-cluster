@@ -11,4 +11,4 @@ Virtual Storm cluster deployed using Vagrant.
 7. Prompt `storm jar /usr/share/topology/jms-storm-sample-1.0-jar-with-dependencies.jar Topology JmsStorm`
 to submit the topology to Storm
 8. Access Storm UI by URL `http://192.168.50.4:8080/index.html`
-9. Access ActiveMQ broker by URL `http://localhost:8161/admin/queues.jsp`
+9. Access ActiveMQ broker by URL `http://localhost:8161/admin/queues.jsp` to view upstream and downstream queues
