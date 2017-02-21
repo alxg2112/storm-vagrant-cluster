@@ -5,12 +5,24 @@
 VAGRANTFILE_API_VERSION = "2"
 STORM_VERSION = "apache-storm-1.0.2"
 STORM_ARCHIVE = "#{STORM_VERSION}.zip"
+ZOOKEEPER_VERSION = "zookeeper-3.4.9"
+ZOOKEEPER_ARCHIVE = "#{ZOOKEEPER_VERSION}.tar.gz"
 TOPOLOGY_ARCHIVE = "jms-storm-sample-1.0-jar-with-dependencies"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.hostmanager.manage_host = true
   config.hostmanager.enabled = true
+  
+  # Download Storm archive
+  if(!File.exist?(STORM_ARCHIVE))
+    `wget -N http://apache.volia.net/storm/apache-storm-1.0.2/apache-storm-1.0.2.zip`
+  end
+
+  # Download Zookeeper archive
+  if(!File.exist?(ZOOKEEPER_ARCHIVE))
+    `wget -N http://apache.ip-connect.vn.ua/zookeeper/zookeeper-3.4.9/zookeeper-3.4.9.tar.gz`
+  end
 
   # Define zookeeper
   config.vm.define "zookeeper" do |zookeeper|
